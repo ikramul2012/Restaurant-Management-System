@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: bazar-card-backend
+    runtime: php
+    buildCommand: |
+      curl -s https://phpize.onrender.com/install | bash
+      export PATH=$PATH:/opt/render/.php/8.2.8/bin
+      composer install --no-dev --optimize-autoloader
+      php artisan migrate --force
+    startCommand: php artisan serve --host=0.0.0.0 --port=10000
